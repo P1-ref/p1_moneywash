@@ -2,7 +2,10 @@ Config = {}
 
 Config.Language = "en" -- "en" or "sv".
 
-Config.WashMoney = vector3(1123.94, -3194.84, -40.4) -- location for the marker to wash money.
+Config.WashMoney = {
+    {coords = vector3(1123.94, -3194.84, -40.4)}, -- location for the marker to wash money.
+    -- {coords = vector3(X.X, Y.Y, Z.Z)}, -- use this to add more locations to open menu for washing money.
+}
 
 Config.EnterMoneyWash = vector3(1142.99, -986.34, 45.92) -- location for the marker to enter interior for moneywash.
 
@@ -23,8 +26,6 @@ Config.ShowTextDist = 1.0
 Config.ShowMarkerDist = 5.0
 
 Config.ShowBlip = false -- set to true if you want a blip on the map for where to enter the moneywash.
-
-Config.Interior = vector3(1117.35, -3195.61, -40.4)
 
 Config.InteriorLeave = vector3(1118.66, -3193.82, -40.4)
 
