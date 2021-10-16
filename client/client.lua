@@ -1,6 +1,4 @@
-ESX = nil
-
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+ESX = exports["es_extended"]:getSharedObject()
 
 -- If you want to open the moneywash menu in another script. TriggerEvent("p1_moneywash:openWashMenu")
 RegisterNetEvent("p1_moneywash:openWashMenu")
