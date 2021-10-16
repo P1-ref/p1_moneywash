@@ -23,11 +23,7 @@ Citizen.CreateThread(function()
             sleep = 0
             DrawMarker(Config.MarkerType, enter.x, enter.y, enter.z-0.95, 0, 0, 0, 0, 0, 0, 1.001, 1.0001, 0.5001, 0, 0, 255, 200, 0, 0, 0, 0)
             if dist <= Config.ShowTextDist then
-                if Config.Language == "en" then
-                    ESX.ShowHelpNotification(Config.LangEN["enterWash"])
-                else
-                    ESX.ShowHelpNotification(Config.LangSV["enterWash"])
-                end
+                ESX.ShowHelpNotification(Config.Translation[Config.Language].enterWash)
                 if IsControlJustReleased(0, 51) then
                     Teleport(leave)
                 end
@@ -37,11 +33,7 @@ Citizen.CreateThread(function()
             sleep = 0
             DrawMarker(Config.MarkerType, leave.x, leave.y, leave.z-0.95, 0, 0, 0, 0, 0, 0, 1.001, 1.0001, 0.5001, 0, 0, 255, 200, 0, 0, 0, 0)
             if dist2 <= Config.ShowTextDist then
-                if Config.Language == "en" then
-                    ESX.ShowHelpNotification(Config.LangEN["leaveWash"])
-                else
-                    ESX.ShowHelpNotification(Config.LangSV["leaveWash"])
-                end
+                ESX.ShowHelpNotification(Config.Translation[Config.Language].leaveWash)
                 if IsControlJustReleased(0, 51) then
                     Teleport(enter)
                 end
@@ -51,11 +43,7 @@ Citizen.CreateThread(function()
             sleep = 0
             DrawMarker(Config.MarkerType, wash.x, wash.y, wash.z-0.95, 0, 0, 0, 0, 0, 0, 1.001, 1.0001, 0.5001, 0, 0, 255, 200, 0, 0, 0, 0)
             if dist3 <= Config.ShowTextDist then
-                if Config.Language == "en" then
-                    ESX.ShowHelpNotification(Config.LangEN["washMoney"])
-                else
-                    ESX.ShowHelpNotification(Config.LangSV["washMoney"])
-                end
+                ESX.ShowHelpNotification(Config.Translation[Config.Language].washMoney)
                 if IsControlJustReleased(0, 51) then
                     WashDirtyMoney()
                 end
@@ -67,24 +55,14 @@ end)
 
 WashDirtyMoney = function()
 
-    if Config.Language == "en" then
-        title = Config.LangEN["washTitle"]
-    else
-        title = Config.LangSV["washTitle"]
-    end
-
     ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'wash_amount', {
-        title = title
+        title = Config.Translation[Config.Language].washTitle
     }, function(data, menu)
     
         local amount = tonumber(data.value)
         
         if amount == nil then
-            if Config.Language == "en" then
-                ESX.ShowNotification(Config.LangEN["invAmount"])
-            else
-                ESX.ShowNotification(Config.LangSV["invAmount"])
-            end
+            ESX.ShowNotification(Config.Translation[Config.Language].invAmount)
         else
             menu.close()
             TriggerServerEvent('p1_moneywash:washMoney', amount)
@@ -103,12 +81,6 @@ end
 
 Citizen.CreateThread(function()
 
-    if Config.Language == "en" then
-        nameForBlip = Config.LangEN["blipName"]
-    else
-        nameForBlip = Config.LangSV["blipName"]
-    end
-
     if Config.ShowBlip then
 		local blip = AddBlipForCoord(Config.EnterMoneyWash)
 
@@ -118,7 +90,7 @@ Citizen.CreateThread(function()
 		SetBlipAsShortRange(blip, true)
 
 		BeginTextCommandSetBlipName("STRING")
-		AddTextComponentString(nameForBlip)
+		AddTextComponentString(Config.Translation[Config.Language].blipName)
 		EndTextCommandSetBlipName(blip)
     end
 end)
