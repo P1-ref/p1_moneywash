@@ -1,5 +1,4 @@
 ESX = nil
-local ped = PlayerPedId()
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
@@ -12,6 +11,7 @@ end)
 Citizen.CreateThread(function()
     while true do
         sleep = 500
+	local ped = PlayerPedId()
         local plyC = GetEntityCoords(ped, false)
         local enter = Config.EnterMoneyWash
         local leave = Config.InteriorLeave
